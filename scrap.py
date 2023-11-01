@@ -105,6 +105,7 @@ def main(download_folder, code):
         print(f"URL do Ficheiro: {url}")
         print(f"Página: {page}")
         print(f"Código: {code}")
+        # print(f"Texto Encontrado: {text_instance}")
         print(f"LISTA: {lista_line}")
         print(f"{'-'*80}\n")
 
