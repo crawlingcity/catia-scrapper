@@ -51,8 +51,6 @@ spec:
       services:
         - name: colocacoes-scrapper-service
           port: 80
-      middlewares:
-        - name: default-headers
   tls:
     secretName: local-crawlingcity-com-tls
 
