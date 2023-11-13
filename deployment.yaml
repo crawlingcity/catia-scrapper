@@ -8,14 +8,14 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 5000
+      targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: colocacoes-scrapper-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: colocacoes-scrapper
@@ -28,7 +28,8 @@ spec:
       - name: colocacoes-scrapper
         image: crawlingcity/colocacoes-scrapper:x64
         ports:
-        - containerPort: 5000
+        - containerPort: 80
+        resources: {}
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -41,11 +42,6 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`www.colocacoes.crawlingcity.com`)
-      kind: Rule
-      services:
-        - name: colocacoes-scrapper-service
-          port: 80
     - match: Host(`colocacoes.crawlingcity.com`)
       kind: Rule
       services:
